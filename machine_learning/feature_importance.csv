@@ -1,0 +1,16 @@
+Feature,Importance
+Number of Standard Cells,0.51103204
+Clock Period,0.184166
+Buffer Count,0.06049518
+Estimated Critical Path Length,0.05296565
+Number of Flip-Flops,0.04884002
+Logic Depth,0.041710667
+Estimated Wire Length,0.025985839
+Number of Nets,0.023763034
+Cell Utilization,0.019594805
+Maximum Fanout,0.01603914
+Routing Congestion,0.0133548435
+Total Cell Area,0.002052796
+Clock Frequency,0.0
+Placement Density,0.0
+Inverter Count,0.0

@@ -1,0 +1,74 @@
+# Configuration for Explainable AI-Assisted Early Timing Violation Prediction Framework
+
+project:
+  name: "An Explainable AI-Assisted Early Timing Violation Prediction and Optimization Framework Using Open-Source EDA Tools"
+  short_title: "AI VLSI Timing Closure Framework"
+  version: "2.0.0"
+  author: "IEEE Research Assistant & Senior VLSI Engineer"
+  license: "MIT"
+
+dataset:
+  output_csv: "dataset/combined_dataset.csv"
+  test_size: 0.2
+  random_state: 42
+  stratify: true
+  cv_folds: 5
+  clock_period_sweep: [0.5, 0.8, 1.0, 1.2, 1.5, 2.0, 2.5, 3.0, 4.0, 5.0, 6.0, 8.0, 10.0]
+  placement_densities: [0.40, 0.50, 0.60, 0.70, 0.85]
+
+eda:
+  tools:
+    yosys: "yosys"
+    openroad: "openroad"
+    opensta: "sta"
+  synth_script: "eda_flow/synth.tcl"
+  openroad_script: "eda_flow/openroad_flow.tcl"
+  sta_script: "eda_flow/sta.tcl"
+  reports_dir: "eda_flow/reports"
+  uploaded_dir: "uploaded_designs"
+
+models:
+  save_dir: "models"
+  random_forest:
+    n_estimators: 100
+    criterion: "gini"
+    random_state: 42
+    class_weight: "balanced"
+    bootstrap: true
+  decision_tree:
+    criterion: "gini"
+    random_state: 42
+    class_weight: "balanced"
+  xgboost:
+    n_estimators: 100
+    learning_rate: 0.1
+    max_depth: 6
+    random_state: 42
+    use_label_encoder: false
+    eval_metric: "logloss"
+
+outputs:
+  graphs_dir: "graphs"
+  reports_dir: "reports"
+  prediction_results_csv: "machine_learning/prediction_results.csv"
+  feature_importance_csv: "machine_learning/feature_importance.csv"
+  pdf_report: "reports/prediction_report.pdf"
+
+features:
+  numerical_features:
+    - "Clock Period"
+    - "Clock Frequency"
+    - "Number of Standard Cells"
+    - "Number of Flip-Flops"
+    - "Number of Nets"
+    - "Total Cell Area"
+    - "Cell Utilization"
+    - "Maximum Fanout"
+    - "Logic Depth"
+    - "Estimated Wire Length"
+    - "Placement Density"
+    - "Routing Congestion"
+    - "Buffer Count"
+    - "Inverter Count"
+    - "Estimated Critical Path Length"
+  target_label: "TimingViolation"
